@@ -1,2 +1,12 @@
-# adsilence-chromium
-AdSilence — gebauter Stand fuer chromium. Quelltext-Spiegel, erzeugt aus der CI.
+# AdSilence — chromium
+
+Der **gebaute Stand** der AdSilence-Erweiterung fuer Chrome Web Store, Version 1.0.1.
+
+Dieses Repository wird automatisch beschrieben und traegt keine Geschichte von
+Hand: Jeder Stand kommt aus der Ausliefer-Kette und entspricht Datei fuer Datei
+dem, was im Laden liegt.
+
+- Website: https://adsilence.net
+- Fertige Pakete: siehe [Releases](../../releases)
+
+Fragen und Fehler gehoeren in die Issues.
