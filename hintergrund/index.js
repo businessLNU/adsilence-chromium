@@ -1,5 +1,5 @@
 // <define:import.meta.env>
-var define_import_meta_env_default = { ADSILENCE_API: "https://adsilence.net", VERSION: "1.0.2", BROWSER: "chromium" };
+var define_import_meta_env_default = { ADSILENCE_API: "https://adsilence.net", VERSION: "1.0.3", BROWSER: "chromium" };
 
 // src/gemeinsam/browser.ts
 var global = globalThis;

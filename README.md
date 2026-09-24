@@ -1,6 +1,6 @@
 # AdSilence — chromium
 
-Der **gebaute Stand** der AdSilence-Erweiterung fuer Chrome Web Store, Version 1.0.2.
+Der **gebaute Stand** der AdSilence-Erweiterung fuer Chrome Web Store, Version 1.0.3.
 
 Dieses Repository wird automatisch beschrieben und traegt keine Geschichte von
 Hand: Jeder Stand kommt aus der Ausliefer-Kette und entspricht Datei fuer Datei
