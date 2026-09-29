@@ -39,7 +39,7 @@ To load this build manually (developer mode):
 ## FAQ
 
 **Is this the same as the Chrome Web Store version?**
-Yes. This repository is written automatically by the release pipeline, and every version matches the Chrome Web Store package file for file — so you can check exactly what you install.
+Yes. This repository is written automatically by the release pipeline, and every version matches, file for file, the package submitted to the Chrome Web Store — so you can check exactly what you install. Right after a release the store may still show the previous version until its review is done.
 
 **Does it work in Brave, Opera, Vivaldi and Edge?**
 Yes. All Chromium-based browsers install Chrome extensions from the Chrome Web Store.
