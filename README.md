@@ -4,7 +4,7 @@
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-success)](https://github.com/businessLNU/adsilence)
 
-The built release of **AdSilence**, a free, open-source **ad blocker for Google Chrome** and every Chromium browser: **Brave**, **Opera**, **Vivaldi** and **Microsoft Edge**. Version 1.0.3.
+The built release of **AdSilence**, a free, open-source **ad blocker for Google Chrome** and every Chromium browser: **Brave**, **Opera**, **Vivaldi** and **Microsoft Edge**. Version 1.0.4.
 
 AdSilence is a **Manifest V3 ad blocker**, **pop-up blocker**, **tracker blocker** and **cookie banner blocker** in one Chrome extension. It does **not** request the `webRequest` permission: Chrome applies the rules itself through `declarativeNetRequest`, so your browsing history never passes through us. A **uBlock Origin alternative for Chrome** that runs under Manifest V3.
 
