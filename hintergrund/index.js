@@ -3650,6 +3650,62 @@ function registrierbar(host) {
   const letzteZwei = teile.slice(-2).join(".");
   return ZWEITEILIGE_ENDUNGEN.has(letzteZwei) ? teile.slice(-3).join(".") : letzteZwei;
 }
+var FREIE_LAENDERENDUNGEN = /* @__PURE__ */ new Set(["tk", "ml", "ga", "cf", "gq"]);
+function laenderadresse(domain, marke) {
+  const punkt = domain.indexOf(".");
+  if (punkt <= 0) return false;
+  const name = domain.slice(0, punkt);
+  const endung = domain.slice(punkt + 1);
+  const land = endung.split(".").pop();
+  const istLand = /^[a-z]{2}$/.test(endung) || ZWEITEILIGE_ENDUNGEN.has(endung);
+  if (!istLand || FREIE_LAENDERENDUNGEN.has(land)) return false;
+  return marke.domains.some((d) => d.split(".")[0] === name);
+}
+var KOEDERTEILE = /* @__PURE__ */ new Set([
+  "login",
+  "logon",
+  "signin",
+  "secure",
+  "security",
+  "konto",
+  "account",
+  "kunde",
+  "kunden",
+  "service",
+  "support",
+  "hilfe",
+  "online",
+  "banking",
+  "onlinebanking",
+  "tan",
+  "app",
+  "web",
+  "info",
+  "portal",
+  "center",
+  "check",
+  "update",
+  "verify",
+  "mobil",
+  "mobile",
+  "neu"
+]);
+var KOEDERANFAENGE = ["sicher", "verifi", "pushtan", "legitim", "bestaetig", "freischalt", "entsperr", "gesperr", "sperr", "aktualis", "pruef", "authent", "zugang"];
+function verbundAdresse(domain, marke) {
+  if (!marke.verbund || !domain.endsWith(".de")) return false;
+  const label = domain.slice(0, -".de".length);
+  if (label.includes(".")) return false;
+  const teile = label.split("-");
+  if (teile.length < 2) return false;
+  const namen = marke.domains.map((d) => d.split(".")[0]);
+  const vorn = namen.includes(teile[0]);
+  const hinten = namen.includes(teile[teile.length - 1]);
+  if (!vorn && !hinten) return false;
+  const rest = vorn ? teile.slice(1) : teile.slice(0, -1);
+  return rest.every(
+    (teil) => teil.length >= 2 && !KOEDERTEILE.has(teil) && !KOEDERANFAENGE.some((a) => teil.startsWith(a))
+  );
+}
 function gehoertZu(host, domain) {
   return host === domain || host.endsWith(`.${domain}`);
 }
@@ -3684,10 +3740,13 @@ function pruefeHost(host, marken2) {
   if (!roh || !roh.includes(".")) return null;
   const lesbar = entschluesseleHost(roh);
   const klein = lesbar.toLowerCase();
+  const domain = registrierbar(klein);
+  const tld = klein.slice(klein.lastIndexOf(".") + 1);
   for (const marke of marken2) {
     if (marke.domains.some((d) => gehoertZu(klein, d))) return null;
+    if (marke.tlds?.includes(tld)) return null;
+    if (laenderadresse(domain, marke) || verbundAdresse(domain, marke)) return null;
   }
-  const domain = registrierbar(klein);
   const domainSkelett = skelett(lesbar.slice(lesbar.length - domain.length));
   const hostSkelett = skelett(lesbar);
   const gemischt = lesbar.split(".").some(mischtSchriften);
